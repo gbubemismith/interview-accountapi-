@@ -4,6 +4,10 @@ package accounts
 // See https://api-docs.form3.tech/api.html#organisation-accounts for
 // more information about fields.
 type AccountData struct {
+	Data *Data `json:"data"`
+}
+
+type Data struct {
 	Attributes     *AccountAttributes `json:"attributes,omitempty"`
 	ID             string             `json:"id,omitempty"`
 	OrganisationID string             `json:"organisation_id,omitempty"`
@@ -27,4 +31,8 @@ type AccountAttributes struct {
 	SecondaryIdentification string   `json:"secondary_identification,omitempty"`
 	Status                  *string  `json:"status,omitempty"`
 	Switched                *bool    `json:"switched,omitempty"`
+}
+
+type ErrorResponse struct {
+	ErrorMessage string `json:"error_message"`
 }

@@ -1,17 +1,16 @@
 package accounts
 
-const Uri = "/v1/organisation/accounts"
-
 type accountFunc struct{}
 
 type AccountFunc interface {
-	CreateAccount()
+	CreateAccount(accountData *AccountData) (*AccountData, error)
 	FetchAccount()
 	DeleteAccount()
 }
 
-func (a *accountFunc) CreateAccount() {
-
+//Concrete implementations that can be accessed publicly
+func (a *accountFunc) CreateAccount(accountData *AccountData) (*AccountData, error) {
+	return a.create(accountData)
 }
 
 func (a *accountFunc) FetchAccount() {

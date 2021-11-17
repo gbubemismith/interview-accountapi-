@@ -1,4 +1,4 @@
-package form3rest
+package form3http
 
 import (
 	"bytes"
@@ -9,7 +9,7 @@ import (
 )
 
 //do
-func (c *restClient) do(method string, url string, headers http.Header, body interface{}) (*Response, error) {
+func (c *httpClient) do(method string, url string, headers http.Header, body interface{}) (*Response, error) {
 
 	addHeaders := c.getRequestHeaders(headers)
 
@@ -39,16 +39,15 @@ func (c *restClient) do(method string, url string, headers http.Header, body int
 	}
 
 	resultResp := Response{
-		status:     response.Status,
-		statusCode: response.StatusCode,
-		headers:    response.Header,
+		Status:     response.Status,
+		StatusCode: response.StatusCode,
 		body:       responseBody,
 	}
 
 	return &resultResp, nil
 }
 
-func (c *restClient) getRequestHeaders(requestHeaders http.Header) http.Header {
+func (c *httpClient) getRequestHeaders(requestHeaders http.Header) http.Header {
 	result := make(http.Header)
 
 	//Add default headers to request, content-type, content
@@ -69,7 +68,7 @@ func (c *restClient) getRequestHeaders(requestHeaders http.Header) http.Header {
 	return result
 }
 
-func (c *restClient) marshalRequestBody(body interface{}) ([]byte, error) {
+func (c *httpClient) marshalRequestBody(body interface{}) ([]byte, error) {
 	if body == nil {
 		return nil, nil
 	}
@@ -78,7 +77,7 @@ func (c *restClient) marshalRequestBody(body interface{}) ([]byte, error) {
 }
 
 //
-func (c *restClient) getHttpClient() *http.Client {
+func (c *httpClient) getHttpClient() *http.Client {
 
 	c.client = &http.Client{}
 	return c.client
