@@ -22,6 +22,11 @@ func (c *clientOptions) SetHeaders(headers http.Header) ClientConfigure {
 	return c
 }
 
+func (c *clientOptions) SetBaseUrl(baseUrl string) ClientConfigure {
+	c.baseUrl = baseUrl
+	return c
+}
+
 func (c *clientOptions) Configure() Client {
 	client := httpClient{
 		options: c,
