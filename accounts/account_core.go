@@ -45,7 +45,7 @@ func getHttpClient() form3http.Client {
 	headers := make(http.Header)
 	headers.Set("Content-Type", "application/vnd.api+json")
 
-	client := form3http.NewOptions().SetHeaders(headers).Configure()
+	client := form3http.NewOptions().SetBaseUrl(baseAddress).SetHeaders(headers).Configure()
 
 	return client
 }

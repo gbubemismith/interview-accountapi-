@@ -9,6 +9,7 @@ type clientOptions struct {
 
 type ClientConfigure interface {
 	SetHeaders(headers http.Header) ClientConfigure
+	SetBaseUrl(baseUrl string) ClientConfigure
 	Configure() Client
 }
 
