@@ -65,6 +65,11 @@ func (a *accountFunction) getAccount(accountId string) (*AccountData, error) {
 	return &result, nil
 }
 
+//method deletes an account resource
+func (a *accountFunction) deleteResource(accountId string, version int64) {
+	
+}
+
 //implementing a singleton for reusing the http client
 func getHttpClient() form3http.Client {
 	//create Content-Type: application/vnd.api+json as defined in form3 documentation

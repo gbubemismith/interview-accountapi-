@@ -73,5 +73,5 @@ func (a *accountFunction) FetchAccount(accountId string) (*AccountData, error) {
 }
 
 func (a *accountFunction) DeleteAccount(test string) {
-
+	
 }
