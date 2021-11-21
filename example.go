@@ -38,7 +38,7 @@ func main() {
 	accountFuntions := accounts.CreateAccountFuntions()
 
 	result, err := accountFuntions.CreateAccount(&accountData)
-	fmt.Println(*&result.Data)
+	fmt.Println(result.Data)
 	fmt.Println(err)
 
 }

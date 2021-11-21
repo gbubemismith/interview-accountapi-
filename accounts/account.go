@@ -8,7 +8,7 @@ type AccountFunc interface {
 	DeleteAccount(test string)
 }
 
-func CreateAccountFuntions() *accountFunction {
+func CreateAccountFuntions() AccountFunc {
 	return &accountFunction{}
 }
 
