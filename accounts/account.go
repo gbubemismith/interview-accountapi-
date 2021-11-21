@@ -8,10 +8,13 @@ type AccountFunc interface {
 	DeleteAccount(test string)
 }
 
+func CreateAccountFuntions() *accountFunction {
+	return &accountFunction{}
+}
+
 //Concrete implementations that can be accessed publicly
 func (a *accountFunction) CreateAccount(accountData *AccountData) (*AccountData, error) {
 	return a.create(accountData)
-	// return accountData, nil
 }
 
 func (a *accountFunction) FetchAccount(test string) {

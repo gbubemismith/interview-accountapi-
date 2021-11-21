@@ -1,19 +1,21 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/gbubemismith/interview-accountapi-/accounts"
 	"github.com/google/uuid"
 )
 
 func main() {
 	//create new account data
-	accountData := &accounts.AccountData{
-		Data: &accounts.Data{
+	accountData := accounts.AccountData{
+		Data: accounts.Data{
 			ID:             uuid.NewString(),
 			Type:           "accounts",
 			Version:        1,
 			OrganisationID: uuid.NewString(),
-			Attributes: &accounts.AccountAttributes{
+			Attributes: accounts.AccountAttributes{
 				Country:      "GB",
 				BaseCurrency: "GBP",
 				BankID:       "400400",
@@ -33,5 +35,10 @@ func main() {
 		},
 	}
 
-	result, err := accounts.AccountFunc.CreateAccount(accountData)
+	accountFuntions := accounts.CreateAccountFuntions()
+
+	result, err := accountFuntions.CreateAccount(&accountData)
+	fmt.Println(*&result.Data)
+	fmt.Println(err)
+
 }
