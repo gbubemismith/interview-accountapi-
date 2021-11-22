@@ -12,23 +12,23 @@ type httpClient struct {
 
 //interface for the common rest verbs, other applications would interact with this directly
 type Client interface {
-	Get(url string, headers http.Header) (*Response, error)
-	Post(url string, headers http.Header, body interface{}) (*Response, error)
-	Delete(url string, headers http.Header) (*Response, error)
+	Get(url string) (*Response, error)
+	Post(url string, body interface{}) (*Response, error)
+	Delete(url string) (*Response, error)
 }
 
 //Public method starts with uppercase
 //Performs a get operation
-func (c *httpClient) Get(url string, headers http.Header) (*Response, error) {
-	return c.do(http.MethodGet, c.options.baseUrl+url, headers, nil)
+func (c *httpClient) Get(url string) (*Response, error) {
+	return c.do(http.MethodGet, c.options.baseUrl+url, nil)
 }
 
 //Performs a post operations, can make a post request with body of any type
-func (c *httpClient) Post(url string, headers http.Header, body interface{}) (*Response, error) {
-	return c.do(http.MethodPost, c.options.baseUrl+url, headers, body)
+func (c *httpClient) Post(url string, body interface{}) (*Response, error) {
+	return c.do(http.MethodPost, c.options.baseUrl+url, body)
 }
 
 //Performs a delete operation
-func (c *httpClient) Delete(url string, headers http.Header) (*Response, error) {
-	return c.do(http.MethodDelete, c.options.baseUrl+url, headers, nil)
+func (c *httpClient) Delete(url string) (*Response, error) {
+	return c.do(http.MethodDelete, c.options.baseUrl+url, nil)
 }

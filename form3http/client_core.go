@@ -9,9 +9,9 @@ import (
 )
 
 //do
-func (c *httpClient) do(method string, url string, headers http.Header, body interface{}) (*Response, error) {
+func (c *httpClient) do(method string, url string, body interface{}) (*Response, error) {
 
-	addHeaders := c.getRequestHeaders(headers)
+	addHeaders := c.getRequestHeaders()
 
 	requestBody, err := c.marshalRequestBody(body)
 	if err != nil {
@@ -47,7 +47,7 @@ func (c *httpClient) do(method string, url string, headers http.Header, body int
 	return &resultResp, nil
 }
 
-func (c *httpClient) getRequestHeaders(requestHeaders http.Header) http.Header {
+func (c *httpClient) getRequestHeaders() http.Header {
 	result := make(http.Header)
 
 	//Add default headers to request, content-type, content
@@ -55,14 +55,6 @@ func (c *httpClient) getRequestHeaders(requestHeaders http.Header) http.Header {
 		if len(value) > 0 {
 			result.Set(header, value[0])
 		}
-	}
-
-	//Add custom headers to request
-	for header, value := range requestHeaders {
-		if len(value) > 0 {
-			result.Set(header, value[0])
-		}
-
 	}
 
 	return result

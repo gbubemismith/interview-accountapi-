@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 
 	"github.com/gbubemismith/interview-accountapi-/accounts"
@@ -36,17 +35,19 @@ func main() {
 	// }
 
 	//create account
-	accountFuntions := accounts.CreateAccountFuntions("b80a0a46-7b68-472d-963e-1a7d2cc28a70", "GB", "400400", "NWBKGB22", "GBDSC", "Oritse Smith")
+	accountFuntions := accounts.CreateAccountFuntions()
 
-	// result, err := accountFuntions.CreateAccount()
+	// result, err := accountFuntions.CreateAccount("b80a0a46-7b68-472d-963e-1a7d2cc28a70", "GB", "400400", "NWBKGB22", "GBDSC", "Oritse Smith")
 
-	result, err := accountFuntions.FetchAccount("e1ec4c2f-a687-4391-934c-055980e0d77")
+	// result, err := accountFuntions.FetchAccount("ad27e265-9605-4b4b-a0e5-3003ea9cc4dc")
+
+	err := accountFuntions.DeleteAccount("ad27e265-9605-4b4b-a0e5-3003ea9cc4dc", 0)
 
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	y, _ := json.Marshal(result)
-	fmt.Println(string(y))
+	// y, _ := json.Marshal(result)
+	// fmt.Println(string(y))
 
 }
