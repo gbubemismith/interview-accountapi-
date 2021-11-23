@@ -35,7 +35,7 @@ func main() {
 	// }
 
 	//create account
-	accountFuntions := accounts.CreateAccountFuntions()
+	accountFuntions := accounts.Init()
 
 	// result, err := accountFuntions.CreateAccount("b80a0a46-7b68-472d-963e-1a7d2cc28a70", "GB", "400400", "NWBKGB22", "GBDSC", "Oritse Smith")
 

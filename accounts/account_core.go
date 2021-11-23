@@ -53,7 +53,7 @@ func (a *accountFunction) getAccount(accountId string) (*AccountData, error) {
 	if response.StatusCode != http.StatusOK {
 		var apiError ErrorResponse
 		if err := response.UnmarshalJson(&apiError); err != nil {
-			return nil, errors.New("error retrieving form 3 error message")
+			return nil, err
 		}
 		return nil, errors.New(apiError.ErrorMessage)
 	}

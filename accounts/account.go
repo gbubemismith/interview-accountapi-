@@ -14,7 +14,9 @@ type AccountFunc interface {
 	DeleteAccount(accountId string, version int64) error
 }
 
-func CreateAccountFuntions() AccountFunc {
+//Initialize
+//returns accountFunction struct which implements AccountFunc interface
+func Init() AccountFunc {
 	return &accountFunction{}
 }
 
