@@ -24,7 +24,16 @@ services:
   postgresql:
     image: postgres:9.5-alpine
     healthcheck:
-      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
+      test:
+        [
+          "CMD",
+          "pg_isready",
+          "-q",
+          "-d",
+          "postgres",
+          "-U",
+          "root"
+        ]
       timeout: 45s
       interval: 10s
       retries: 10

@@ -7,15 +7,11 @@ import (
 type Response struct {
 	Status     string
 	StatusCode int
-	body       []byte
+	Body       []byte
 }
 
 func (r *Response) Bytes() []byte {
-	return r.body
-}
-
-func (r *Response) String() string {
-	return string(r.body)
+	return r.Body
 }
 
 func (r *Response) UnmarshalJson(target interface{}) error {

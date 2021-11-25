@@ -41,7 +41,7 @@ func (c *httpClient) do(method string, url string, body interface{}) (*Response,
 	resultResp := Response{
 		Status:     response.Status,
 		StatusCode: response.StatusCode,
-		body:       responseBody,
+		Body:       responseBody,
 	}
 
 	return &resultResp, nil

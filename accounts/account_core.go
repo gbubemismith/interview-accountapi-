@@ -9,12 +9,12 @@ import (
 )
 
 const (
-	baseAddress = "http://localhost:8080"
-	apiPath     = "/v1/organisation/accounts"
+	apiPath = "/v1/organisation/accounts"
 )
 
 var (
-	httpClient = getHttpClient()
+	baseAddress = "http://localhost:8080"
+	httpClient  = getHttpClient()
 )
 
 //private business logic to create an account
@@ -29,7 +29,7 @@ func (a *accountFunction) create(body interface{}) (*AccountData, error) {
 	if response.StatusCode != http.StatusCreated {
 		var apiError ErrorResponse
 		if err := response.UnmarshalJson(&apiError); err != nil {
-			return nil, errors.New("error retrieving form 3 error message")
+			return nil, err
 		}
 		return nil, errors.New(apiError.ErrorMessage)
 	}
@@ -82,11 +82,9 @@ func (a *accountFunction) deleteResource(accountId string, version int64) error 
 			return errors.New("specified resource does not exist")
 		}
 
-		if response.StatusCode == http.StatusNotFound {
-			return errors.New("specified resource does not exist")
+		if response.StatusCode == http.StatusConflict {
+			return errors.New("specified version incorrect")
 		}
-
-		return errors.New("something unusual occured, please try again later")
 	}
 
 	return nil

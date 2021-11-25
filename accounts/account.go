@@ -9,7 +9,7 @@ type accountFunction struct{}
 
 //public interface
 type AccountFunc interface {
-	CreateAccount(organisationId string, country string, bankId string, bic string, bankId_code string, accountName string) (*AccountData, error)
+	CreateAccount(id *string, organisationId string, country string, bankId string, bic string, bankId_code string, accountName string) (*AccountData, error)
 	FetchAccount(accountId string) (*AccountData, error)
 	DeleteAccount(accountId string, version int64) error
 }
@@ -28,9 +28,13 @@ func Init() AccountFunc {
 //bic SWIFT BIC in either 8 or 11 character format, nil if not required
 //bankId_code Identifies the type of bank ID being used
 //accountName Name of the account holder
-func (a *accountFunction) CreateAccount(organisationId string, country string, bankId string, bic string, bankId_code string, accountName string) (*AccountData, error) {
+//pass nil to id, if you want one created for you
+func (a *accountFunction) CreateAccount(id *string, organisationId, country, bankId, bic, bankId_code, accountName string) (*AccountData, error) {
 	//create unique id
-	id := uuid.NewString()
+	if id == nil {
+		u := uuid.NewString()
+		id = &u
+	}
 	//build account attributes
 	attr := AccountAttributes{
 		BankID:     bankId,
@@ -42,7 +46,7 @@ func (a *accountFunction) CreateAccount(organisationId string, country string, b
 	//build data struct
 	data := Data{
 		Attributes:     &attr,
-		ID:             id,
+		ID:             *id,
 		OrganisationID: organisationId,
 		Type:           "accounts",
 	}
