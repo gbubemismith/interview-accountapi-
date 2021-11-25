@@ -2,6 +2,7 @@ package accounts
 
 import (
 	"fmt"
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -9,8 +10,8 @@ import (
 
 var (
 	mockBaseAddress = "http://localhost:3000"
-	// baseAddress     = os.Getenv("SERVER_URL")
-	baseAddress = "http://localhost:8080"
+	baseAddress     = os.Getenv("SERVER_URL")
+	// baseAddress = "http://localhost:8080"
 )
 
 //Test Fetch Account

@@ -17,7 +17,8 @@ func main() {
 
 	//get base address
 	baseAddress := os.Getenv("SERVER_URL")
-	//if variable is not set on the environment
+
+	//if variable is not set on the environment or run the project locally
 	if baseAddress == "" {
 		baseAddress = "http://localhost:8080"
 	}
