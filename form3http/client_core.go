@@ -10,7 +10,6 @@ import (
 
 //do
 func (c *httpClient) do(method string, url string, body interface{}) (*Response, error) {
-
 	addHeaders := c.getRequestHeaders()
 
 	requestBody, err := c.marshalRequestBody(body)

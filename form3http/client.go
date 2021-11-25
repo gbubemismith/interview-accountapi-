@@ -20,15 +20,15 @@ type Client interface {
 //Public method starts with uppercase
 //Performs a get operation
 func (c *httpClient) Get(url string) (*Response, error) {
-	return c.do(http.MethodGet, c.options.baseUrl+url, nil)
+	return c.do(http.MethodGet, url, nil)
 }
 
 //Performs a post operations, can make a post request with body of any type
 func (c *httpClient) Post(url string, body interface{}) (*Response, error) {
-	return c.do(http.MethodPost, c.options.baseUrl+url, body)
+	return c.do(http.MethodPost, url, body)
 }
 
 //Performs a delete operation
 func (c *httpClient) Delete(url string) (*Response, error) {
-	return c.do(http.MethodDelete, c.options.baseUrl+url, nil)
+	return c.do(http.MethodDelete, url, nil)
 }

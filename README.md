@@ -1,5 +1,14 @@
 # Form3 Take Home Exercise
 
+### Author -> Gbubemi Smith
+I am new to golang(3 weeks+) and this is my first project. I tried to build the library following all the principles I have become accustomed to as a developer e.g OOP, SOLID. I ensured any user of the library only has access to the public interfaces which I exposed and I tried as much as possible to encapsulate and hide much of the acutal implementation. There are two main folders in this project namely: form3htttp, accounts. #### form3http is basically a wrapper around the required http calls to the form3 api.I used a builder approach as well exposing functionalities through abstarct methods rather than concrete implementattions. The form3http is resuable and all that needs to be passed basically are the headers, api url and body. #### accounts is the actual client library for this project and I made it as simple as possible to initialize and call. An Init function is used to intialize the library and the base address is an argument that needs to be passed. Once that is done the available functionalities based on this project #### shoulds would be available to be called. The test cases are also written in this directory and can be seen once the command docker-compose up is entered. There is an example folder where I have example calls. Some tutorials and articles where referenced to make this happen
+- https://blog.logrocket.com/making-http-requests-in-go
+- https://www.digitalocean.com/community/tutorials/defining-methods-in-go
+- https://tour.golang.org/
+- https://pkg.go.dev/github.com/stretchr/testify/assert
+- https://devcharmander.medium.com/design-patterns-in-golang-the-builder-dac468a71194
+- https://www.youtube.com/watch?v=uB_45bSIyik&t=972s
+
 Engineers at Form3 build highly available distributed systems in a microservices environment. Our take home test is designed to evaluate real world activities that are involved with this role. We recognise that this may not be as mentally challenging and may take longer to implement than some algorithmic tests that are often seen in interview exercises. Our approach however helps ensure that you will be working with a team of engineers with the necessary practical skills for the role (as well as a diverse range of technical wizardry). 
 
 ## Instructions

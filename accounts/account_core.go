@@ -13,15 +13,14 @@ const (
 )
 
 var (
-	baseAddress = "http://localhost:8080"
-	httpClient  = getHttpClient()
+	httpClient = getHttpClient()
 )
 
 //private business logic to create an account
 //method sends a post request to form3's endpoint
 func (a *accountFunction) create(body interface{}) (*AccountData, error) {
 
-	response, err := httpClient.Post(apiPath, body)
+	response, err := httpClient.Post(a.baseAddress+apiPath, body)
 	if err != nil {
 		return nil, err
 	}
@@ -45,7 +44,11 @@ func (a *accountFunction) create(body interface{}) (*AccountData, error) {
 //method retrives a created account
 func (a *accountFunction) getAccount(accountId string) (*AccountData, error) {
 
-	response, err := httpClient.Get(apiPath + "/" + accountId)
+	if accountId == "" {
+		return nil, errors.New("accountid must be provided")
+	}
+
+	response, err := httpClient.Get(a.baseAddress + apiPath + "/" + accountId)
 	if err != nil {
 		return nil, err
 	}
@@ -62,14 +65,13 @@ func (a *accountFunction) getAccount(accountId string) (*AccountData, error) {
 	if err := response.UnmarshalJson(&result); err != nil {
 		return nil, err
 	}
-
 	return &result, nil
 }
 
 //method deletes an account resource
 func (a *accountFunction) deleteResource(accountId string, version int64) error {
 	//build delete url with query paramater
-	deleteUrl := apiPath + "/" + accountId + "?version=" + strconv.Itoa(int(version))
+	deleteUrl := a.baseAddress + apiPath + "/" + accountId + "?version=" + strconv.Itoa(int(version))
 
 	response, err := httpClient.Delete(deleteUrl)
 
@@ -98,7 +100,7 @@ func getHttpClient() form3http.Client {
 	headers := make(http.Header)
 	headers.Set("Content-Type", "application/vnd.api+json")
 
-	client := form3http.NewOptions().SetBaseUrl(baseAddress).SetHeaders(headers).Configure()
+	client := form3http.NewOptions().SetHeaders(headers).Configure()
 
 	return client
 }

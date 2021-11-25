@@ -5,7 +5,9 @@ import (
 )
 
 //priavte struct with priavte fields
-type accountFunction struct{}
+type accountFunction struct {
+	baseAddress string
+}
 
 //public interface
 type AccountFunc interface {
@@ -16,8 +18,10 @@ type AccountFunc interface {
 
 //Initialize
 //returns accountFunction struct which implements AccountFunc interface
-func Init() AccountFunc {
-	return &accountFunction{}
+func Init(baseAddress string) AccountFunc {
+	return &accountFunction{
+		baseAddress: baseAddress,
+	}
 }
 
 //Concrete implementations that can be accessed publicly
